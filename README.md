@@ -1,5 +1,6 @@
-# Python Starter
+Aja planeerimise rakendus" (Time Manager)
 
-Quickly get started with [Python](https://www.python.org/) using this starter! 
-
-- If you want to upgrade Python, you can change the image in the [Dockerfile](./.devcontainer/Dockerfile).
+Api loomisel oli rakendatud XP(Extreme Programming) meetod.
+  1."Simplicity - ehk siis kood oli kirjutatud loogiliselt ja arusaadavalt, kusjuures iga ploki jaoks olid lisatud kommentaarid."
+  2."Refactoring - peale koodi kirjutamist olid mõned plokid ümber kirjutatud ja lihtsustatud. Näiteks CSS-i vormistamiseks olnud plokid ühendati ühte gruppi."
+  
