@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time Manager</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 20px;
+      }
+      h1 {
+        text-align: center;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .task {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        background: #fff;
+        margin: 5px 0;
+        border-radius: 5px;
+      }
+      .task button {
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 3px;
+      }
+      .task button.complete {
+        background-color: #4caf50;
+      }
+      form button[type="submit"] {
+        background-color: #006400; /* Тёмно-зелёный цвет */
+        color: white;
+        font-size: 18px; /* Увеличенный шрифт */
+        padding: 10px 20px; /* Увеличенные отступы */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      form button[type="submit"]:hover {
+        background-color: #004d00; /* Более тёмный оттенок при наведении */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Time Manager</h1>
+    <div class="container">
+      <!-- Add new task -->
+      <form action="/add" method="post">
+        <input type="text" name="title" placeholder="Enter task" required />
+        <input type="date" name="deadline_date" required />
+        <input type="time" name="deadline_time" required />
+        <button type="submit">Add</button>
+      </form>
+
+      <!-- Ongoing tasks -->
+      <h2>Ongoing Tasks</h2>
+      {% for task in tasks['ongoing'] %}
+      <div class="task">
+        <span>{{ task.title }} (by {{ task.deadline }})</span>
+        <div>
+          <a href="/complete/{{ loop.index0 }}"
+            ><button class="complete">Done</button></a
+          >
+          <a href="/delete/ongoing/{{ loop.index0 }}"
+            ><button>Delete</button></a
+          >
+        </div>
+      </div>
+      {% endfor %}
+
+      <!-- Completed tasks -->
+      <h2>Completed Tasks</h2>
+      {% for task in tasks['completed'] %}
+      <div class="task">
+        <span>{{ task.title }} (by {{ task.deadline }})</span>
+        <a href="/delete/completed/{{ loop.index0 }}"
+          ><button>Delete</button></a
+        >
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
